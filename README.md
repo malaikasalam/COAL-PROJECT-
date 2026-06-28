@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# 🎙️ Real-Time Voice Processing and Hardware Performance Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack system that captures and processes live audio in real time, while measuring and visualizing actual hardware performance metrics — built as part of the **Computer Organization & Assembly Language (COAL)** course.
 
-## Available Scripts
+This project bridges low-level systems programming with modern full-stack development: performance-critical audio processing logic is implemented in **x86-64 NASM assembly**, wrapped by a **C++** backend, served through **Node.js/Express**, and visualized live using **React**.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🎧 **Real-time audio capture and processing**
+- ⚙️ **Core processing logic written in x86-64 NASM assembly** for performance-critical operations
+- 📊 **Genuine hardware performance measurement** (not estimated or hardcoded):
+  - CPU cycle counts via `RDTSC`
+  - Cycles Per Instruction (CPI)
+  - Millions of Instructions Per Second (MIPS)
+  - Cache hit/miss rates
+  - Instruction counts
+- 🔄 **Live polling vs. interrupt-driven comparison**, using real measured data side-by-side
+- 📈 **Interactive React dashboard** for visualizing performance metrics in real time
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Layer | Technology |
+|---|---|
+| Performance-critical logic | x86-64 NASM Assembly |
+| Backend core | C++ |
+| Server | Node.js / Express |
+| Frontend | React |
+| Audio handling | FFmpeg |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+COAL-PROJECT/
+├── build.bat              # Build script for assembly/C++ components
+├── main.cpp                # C++ core logic
+├── proces_Asm.asm          # x86-64 NASM assembly module
+├── server.js               # Node.js/Express server
+├── package.json
+├── package-lock.json
+└── src/
+    ├── App.jsx              # React app entry
+    └── App.css
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🚀 Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [NASM](https://www.nasm.us/) assembler
+- A C++ compiler (e.g. MinGW/g++ on Windows)
+- [FFmpeg](https://ffmpeg.org/) installed and accessible in your system PATH
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/malaikasalam/COAL-PROJECT-.git
+   cd COAL-PROJECT-
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Install frontend/server dependencies**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Build the assembly and C++ components**
+   ```bash
+   build.bat
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Start the server**
+   ```bash
+   node server.js
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Run the React frontend**
+   ```bash
+   npm start
+   ```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📊 How It Works
 
-### Analyzing the Bundle Size
+1. Live audio is captured and passed to the C++ core, which calls into the NASM assembly module for performance-critical processing.
+2. While processing runs, the system measures real hardware-level metrics using `RDTSC` and related counters — no simulated or hardcoded values.
+3. These metrics are sent through the Node.js/Express server to the React frontend.
+4. The dashboard visualizes the data live, including a direct comparison between **polling** and **interrupt-driven** processing modes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 👥 Team
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Malaika Salam**
+- **Ayesha Saleh**
+- **Aasfa Maham Ghazir**
+  
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📄 License
 
-### Deployment
+This project is licensed under the MIT License — feel free to use, modify, and build upon it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🙏 Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built as part of the Computer Organization & Assembly Language (COAL) course curriculum, combining low-level systems concepts with practical full-stack engineering.
